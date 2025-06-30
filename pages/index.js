@@ -1,14 +1,14 @@
 // pages/index.js
 
 import React, { useState, useEffect, useRef } from 'react';
-import { AppConfig } from '../lib/data'; // Impor data dari file terpisah
+import { AppConfig } from '../lib/data'; // Import data dari file terpisah
 
 // ============================================================================
 // KOMPONEN-KOMPONEN KECIL (UTILITY)
 // ============================================================================
 const Icon = ({ className }) => <i className={className}></i>;
 const SectionKicker = ({ children }) => <p className="section-kicker">{children}</p>;
-const SectionTitle = ({ children }) => <h2 className="h1 fw-bold text-secondary">{children}</h2>;
+const SectionTitle = ({ children }) => <h2 className="h1 fw-bold text-brand-secondary">{children}</h2>;
 const SectionLead = ({ children }) => <p className="lead col-lg-8 mx-auto">{children}</p>;
 
 // ============================================================================
@@ -24,7 +24,7 @@ const Header = ({ onThemeToggle, theme }) => {
                 <div className="container">
                     <a className="navbar-brand d-flex align-items-center" href="#">
                         <img src={AppConfig.images.logo} alt="Logo RNG" width="35" height="48" style={{ borderRadius: '50%' }} className="me-2" />
-                        <span className="fw-bold fs-5 text-secondary">Rasyifa Nusantara Group</span>
+                        <span className="fw-bold fs-5 text-brand-secondary">Rasyifa Nusantara Group</span>
                     </a>
                     <button className="navbar-toggler border-0" type="button" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -125,9 +125,6 @@ const GalleryModal = ({ activeImage, onClose }) => {
     );
 };
 
-// ============================================================================
-// KOMPONEN-KOMPONEN SEKSI HALAMAN
-// ============================================================================
 const TeamSection = () => {
     const teamData = {
         rafid: { name: 'Rafid Enggar Yasdianto, SH', desc: 'Dengan pengalaman lebih dari 10 tahun, memimpin tim serta koordinasi dengan beberapa instansi, di bidang hukum maupun teknis lingkungan dan kehutanan.' },
