@@ -3,7 +3,7 @@
 :root {
   --bs-primary: #059669;
   --bs-primary-rgb: 5, 150, 105;
-  --bs-secondary: #064e3b;
+  --bs-secondary-custom: #064e3b; /* Warna hijau tua kustom */
   --bs-body-color: #475569;
   --bs-body-bg: #f8f9fa;
   --bs-tertiary-bg: #ffffff;
@@ -14,7 +14,7 @@
 [data-bs-theme="dark"] {
   --bs-primary: #34d399;
   --bs-primary-rgb: 52, 211, 153;
-  --bs-secondary: #a7f3d0;
+  --bs-secondary-custom: #a7f3d0; /* Warna hijau terang kustom untuk mode gelap */
   --bs-body-color: #cbd5e1;
   --bs-body-bg: #1e293b;
   --bs-tertiary-bg: #334155;
@@ -33,6 +33,11 @@ body {
   transition: background-color 0.3s, color 0.3s;
   background-color: var(--bs-body-bg);
   color: var(--bs-body-color);
+}
+
+/* Kelas baru untuk menggunakan warna hijau kustom kita */
+.text-brand-secondary {
+  color: var(--bs-secondary-custom) !important;
 }
 
 .bg-light-green { background-color: var(--bs-light-green-bg); }
