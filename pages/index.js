@@ -264,9 +264,7 @@ const TestimonialsSection = () => {
     );
 };
 
-// ============================================================================
-// KOMPONEN HALAMAN UTAMA (ENTRY POINT)
-// ============================================================================
+// ===================== HALAMAN UTAMA =====================
 export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
     const [activeImage, setActiveImage] = useState(null);
     const sliderRef = useRef(null);
@@ -287,33 +285,48 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
     
     return (
         <>
+            {/* HEADER */}
             <Header onThemeToggle={handleThemeToggle} theme={theme} />
             <main>
+                {/* MODAL GALLERY */}
                 <GalleryModal activeImage={activeImage} onClose={() => setActiveImage(null)} />
-                
-                <section className="hero-bg d-flex align-items-center text-white">
+                {/* HERO SECTION */}
+                <section className="hero-bg d-flex align-items-center text-white" aria-label="Hero Section">
                     <div className="container text-center" data-aos="fade-up">
-                        <h1 className="hero-title">{AppConfig.content.hero.title}</h1>
-                        <p className="hero-tagline">{AppConfig.content.hero.tagline}</p>
-                        <div className="d-flex justify-content-center flex-wrap gap-3"><a href="#layanan" className="btn btn-light btn-lg fw-bold px-4">Jelajahi Layanan</a><a href="#kontak" className="btn btn-outline-light btn-lg fw-bold px-4">Konsultasi Sekarang</a></div>
+                        <h1 className="hero-title" tabIndex={0}>{AppConfig.content.hero.title}</h1>
+                        <p className="hero-tagline" tabIndex={0}>{AppConfig.content.hero.tagline}</p>
+                        <div className="d-flex justify-content-center flex-wrap gap-3">
+                            <a href="#layanan" className="btn btn-light btn-lg fw-bold px-4">Jelajahi Layanan</a>
+                            <a href="#kontak" className="btn btn-outline-light btn-lg fw-bold px-4">Konsultasi Sekarang</a>
+                        </div>
                     </div>
                 </section>
-                
-                <section id="tentang" className="py-5">
+                {/* TENTANG KAMI */}
+                <section id="tentang" className="py-5" aria-label="Tentang Kami">
                     <div className="container py-lg-5">
                         <div className="row align-items-center g-5">
-                            <div className="col-lg-6" data-aos="fade-right"><img src={AppConfig.images.about} alt="Tim Rasyifa Group berdiskusi" className="img-fluid rounded-3 shadow-lg"/></div>
+                            <div className="col-lg-6" data-aos="fade-right">
+                                <img src={AppConfig.images.about} alt="Tim Rasyifa Group berdiskusi" className="img-fluid rounded-3 shadow-lg" loading="lazy"/>
+                            </div>
                             <div className="col-lg-6" data-aos="fade-left">
                                 <SectionKicker>{AppConfig.content.about.kicker}</SectionKicker>
                                 <SectionTitle>{AppConfig.content.about.title}</SectionTitle>
                                 <p className="fs-5 mt-3">{AppConfig.content.about.p1}</p>
                                 <p className="mt-3">{AppConfig.content.about.p2}</p>
+                                <div className="d-flex gap-3 mt-4">
+                                    <a href="/profil-rasyifa.pdf" className="btn btn-primary fw-bold px-4" download target="_blank" rel="noopener noreferrer">
+                                        <i className="fa-solid fa-download me-2"></i>Download Profil
+                                    </a>
+                                    <button className="btn btn-outline-primary fw-bold px-4" onClick={() => window.print()} type="button">
+                                        <i className="fa-solid fa-print me-2"></i>Cetak Profil
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
-                <section id="sejarah" className="py-5 bg-light-green">
+                {/* SEJARAH */}
+                <section id="sejarah" className="py-5 bg-light-green" aria-label="Sejarah Perusahaan">
                     <div className="container py-lg-5" data-aos="fade-up">
                         <div className="text-center">
                             <SectionKicker>{AppConfig.content.history.kicker}</SectionKicker>
@@ -322,28 +335,39 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
                         </div>
                     </div>
                 </section>
-
+                {/* TIM */}
                 <TeamSection />
+                {/* PROYEK */}
                 <ProjectsSection />
+                {/* LAYANAN */}
                 <ServicesSection />
+                {/* TESTIMONI */}
                 <TestimonialsSection />
-
-                <section id="klien" className="py-5 bg-light-green">
+                {/* KLIEN */}
+                <section id="klien" className="py-5 bg-light-green" aria-label="Klien dan Mitra">
                     <div className="container py-lg-5" data-aos="fade-up">
                         <div className="text-center mb-5">
                             <SectionKicker>{AppConfig.content.clients.kicker}</SectionKicker>
                             <SectionTitle>{AppConfig.content.clients.title}</SectionTitle>
                             <SectionLead>{AppConfig.content.clients.lead}</SectionLead>
                         </div>
-                        <div className="clients-grid">{AppConfig.images.clients.map((c, i) =>(
-                            <div className="client-item text-center" key={i}><img src={c.logo} className="client-logo mx-auto" alt={c.name} /><p className="client-name mt-3 fw-semibold small">{c.name}</p></div>
-                        ))}</div>
+                        <div className="clients-grid">
+                            {AppConfig.images.clients.map((c, i) =>(
+                                <div className="client-item text-center" key={i}>
+                                    <img src={c.logo} className="client-logo mx-auto" alt={c.name} loading="lazy"/>
+                                    <p className="client-name mt-3 fw-semibold small">{c.name}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
-                
-                <section id="galeri" className="py-5">
+                {/* GALERI */}
+                <section id="galeri" className="py-5" aria-label="Galeri Proyek">
                     <div className="container py-lg-5" data-aos="fade-up">
-                        <div className="text-center mb-5"><SectionKicker>{AppConfig.content.gallery.kicker}</SectionKicker><SectionTitle>{AppConfig.content.gallery.title}</SectionTitle></div>
+                        <div className="text-center mb-5">
+                            <SectionKicker>{AppConfig.content.gallery.kicker}</SectionKicker>
+                            <SectionTitle>{AppConfig.content.gallery.title}</SectionTitle>
+                        </div>
                         <ul className="nav nav-tabs justify-content-center border-bottom-0 mb-5" id="galleryTab" role="tablist">
                             <li className="nav-item" role="presentation"><button className="nav-link active" data-bs-toggle="tab" data-bs-target="#featured-pane" type="button">Proyek Unggulan</button></li>
                             <li className="nav-item" role="presentation"><button className="nav-link" data-bs-toggle="tab" data-bs-target="#new-gallery-pane" type="button">Kegiatan</button></li>
@@ -354,26 +378,44 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
                                     {AppConfig.images.featuredGallery.map((item, index) => (
                                         <div className="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay={100*index} key={item.id}>
                                             <div className="card h-100 shadow-sm">
-                                                <a href="#" onClick={e => {e.preventDefault(); setActiveImage(item.src);}}><img src={item.src} className="card-img-top" style={{aspectRatio: '4/3', objectFit: 'cover'}} alt={item.alt}/></a>
-                                                <div className="card-body text-center d-flex flex-column"><p className="card-text small fw-medium mt-auto">{item.alt}</p></div>
+                                                <a href="#" onClick={e => {e.preventDefault(); setActiveImage(item.src);}} aria-label={item.alt}>
+                                                    <img src={item.src} className="card-img-top" style={{aspectRatio: '4/3', objectFit: 'cover'}} alt={item.alt} loading="lazy"/>
+                                                </a>
+                                                <div className="card-body text-center d-flex flex-column">
+                                                    <p className="card-text small fw-medium mt-auto">{item.alt}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                                <div ref={sliderRef} className="gallery-slider">{AppConfig.images.sliderGallery.map((src, i) => (
-                                    <div key={i} className="px-2"><a href="#" onClick={e => {e.preventDefault(); setActiveImage(src);}} className="d-block rounded overflow-hidden shadow-sm"><img src={src} className="w-100" style={{aspectRatio: '4/3', objectFit: 'cover'}}/></a></div>
-                                ))}</div>
+                                <div ref={sliderRef} className="gallery-slider">
+                                    {AppConfig.images.sliderGallery.map((src, i) => (
+                                        <div key={i} className="px-2">
+                                            <a href="#" onClick={e => {e.preventDefault(); setActiveImage(src);}} className="d-block rounded overflow-hidden shadow-sm" aria-label={`Galeri slide ${i+1}`}>
+                                                <img src={src} className="w-100" style={{aspectRatio: '4/3', objectFit: 'cover'}} alt={`Galeri slide ${i+1}`} loading="lazy"/>
+                                            </a>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                             <div className="tab-pane fade" id="new-gallery-pane">
-                                <div className="row g-4">{AppConfig.images.activityGallery.map((src, i) => (
-                                    <div className="col-6 col-md-4 col-lg-3" key={i}><a href="#" onClick={e => {e.preventDefault(); setActiveImage(src);}} className="d-block rounded overflow-hidden shadow-sm"><img src={src} className="w-100 h-100 object-cover" style={{aspectRatio: '1/1'}}/></a></div>
-                                ))}</div>
+                                <div className="row g-4">
+                                    {AppConfig.images.activityGallery.map((src, i) => (
+                                        <div className="col-6 col-md-4 col-lg-3" key={i}>
+                                            <a href="#" onClick={e => {e.preventDefault(); setActiveImage(src);}} className="d-block rounded overflow-hidden shadow-sm" aria-label={`Galeri kegiatan ${i+1}`}>
+                                                <img src={src} className="w-100 h-100 object-cover" style={{aspectRatio: '1/1'}} alt={`Galeri kegiatan ${i+1}`} loading="lazy"/>
+                                            </a>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </main>
+            {/* FOOTER */}
             <Footer />
+            {/* WHATSAPP BUTTON */}
             <WhatsAppButton />
         </>
     );
