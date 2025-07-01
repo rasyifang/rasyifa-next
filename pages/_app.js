@@ -139,78 +139,112 @@ const MyApp = ({ Component, pageProps }) => {
                 .hero-title { font-size: 2.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2rem; }
                 .hero-tagline { font-size: 1.25rem; font-weight: 400; line-height: 1.6; max-width: 850px; margin: 0 auto 7rem auto; }
                 @media (max-width: 767.98px) { .hero-title { font-size: 2rem; line-height: 1.3; } .hero-tagline { font-size: 1.1rem; margin-bottom: 7rem; } }
+                /* KICKER */
                 .section-kicker {
                   font-weight: 600;
                   color: var(--bs-primary) !important;
                   text-transform: uppercase;
                   letter-spacing: .05em;
                 }
-                .floating-whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: #fff; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 2px 2px 10px rgba(0,0,0,.2); z-index: 1030; text-decoration: none; }
-                .floating-whatsapp-btn:hover { transform: scale(1.1); color: #fff; }
-                footer a { text-decoration: none; color: #adb5bd; transition: color .3s ease; }
-                footer a:hover { color: #fff; }
-                .slogan-highlight { color: #6ee7b7; font-weight: 600; animation: pulse-glow 3s infinite ease-in-out; }
-                @keyframes pulse-glow { 0%{text-shadow:0 0 5px rgba(110,231,183,.6)} 50%{text-shadow:0 0 14px rgba(110,231,183,1)} 100%{text-shadow:0 0 5px rgba(110,231,183,.6)} }
-                .gallery-slider .slick-prev, .gallery-slider .slick-next {
-                  background-color: rgba(5,150,105,.8);
-                  width: 40px;
-                  height: 40px;
-                  border-radius: 50%;
-                  z-index: 1;
-                  display: flex !important;
-                  align-items: center;
+                /* TAB NAVIGATION */
+                .nav-tabs {
+                  margin-top: 2rem;
+                  margin-bottom: 2.5rem;
+                  gap: 0.5rem;
+                  border-bottom: 1px solid var(--bs-primary) !important;
+                  display: flex;
+                  flex-wrap: wrap;
                   justify-content: center;
                 }
-                .gallery-slider .slick-prev:before, .gallery-slider .slick-next:before {
-                  display: none;
+                .nav-tabs .nav-item {
+                  margin-right: 0.25rem;
+                  margin-left: 0.25rem;
                 }
-                .gallery-slider .slick-prev::after, .gallery-slider .slick-next::after {
-                  font-family: "Font Awesome 6 Free";
-                  font-weight: 900;
-                  font-size: 20px;
-                  color: #fff;
-                  display: block;
-                }
-                .gallery-slider .slick-prev::after {
-                  content: "\f053";
-                }
-                .gallery-slider .slick-next::after {
-                  content: "\f054";
-                }
-                .gallery-slider .slick-dots li button:before { color: var(--bs-primary); }
-                .gallery-slider .slick-dots li.slick-active button:before { color: var(--bs-primary); }
-                .gallery-grid-item, .slide-image-wrapper { aspect-ratio: 1 / 1; }
-                .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+                .nav-tabs .nav-link {
+                  margin-bottom: 0;
+                  padding: 0.75rem 1.5rem;
+                  font-weight: 600;
+                  font-size: 1rem;
                   color: var(--bs-primary) !important;
-                  background-color: var(--bs-tertiary-bg) !important;
-                  border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-tertiary-bg) !important;
+                  border: 1px solid var(--bs-primary) !important;
+                  background: transparent !important;
+                  transition: background 0.2s, color 0.2s;
+                  border-radius: 0.5rem 0.5rem 0 0;
                 }
-                .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2.5rem 2rem; }
-                .client-logo { height: 60px; max-width: 150px; object-fit: contain; opacity: 0.9; transition: all 0.3s ease-in-out; }
-                .client-logo:hover { opacity: 1; transform: scale(1.1); }
-                [data-bs-theme="dark"] .client-logo {
-                  opacity: 0.9;
-                  /* filter: brightness(0) invert(1);  dihapus agar logo tetap terlihat normal */
+                .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+                  color: #fff !important;
+                  background-color: var(--bs-primary) !important;
+                  border-color: var(--bs-primary) var(--bs-primary) var(--bs-tertiary-bg) !important;
                 }
-
-                /* Hilangkan warna biru Bootstrap default, gunakan putih/transparan/hijau sesuai tema */
-                .navbar {
-                  background-color: var(--bs-tertiary-bg) !important;
+                .nav-tabs .nav-link:hover {
+                  background: var(--bs-primary) !important;
+                  color: #fff !important;
                 }
-                [data-bs-theme="dark"] .navbar {
-                  background-color: rgba(30, 41, 59, 0.9) !important;
+                /* Jarak heading ke tab navigation */
+                .nav-tabs {
+                  margin-top: 2rem;
+                  margin-bottom: 2.5rem;
                 }
-
-                .btn-primary, .btn-info, .btn-blue {
+                .text-center.mb-5 + .nav-tabs {
+                  margin-top: 2.5rem;
+                }
+                /* TOGGLE SWITCH */
+                .form-check-input:checked {
+                  background-color: var(--bs-primary) !important;
+                  border-color: var(--bs-primary) !important;
+                }
+                /* BUTTONS */
+                .btn, .btn-primary, .btn-info, .btn-blue {
                   background-color: var(--bs-primary) !important;
                   border-color: var(--bs-primary) !important;
                   color: #fff !important;
                 }
-                .btn-primary:hover, .btn-info:hover, .btn-blue:hover {
+                .btn:hover, .btn-primary:hover, .btn-info:hover, .btn-blue:hover {
                   background-color: #047857 !important;
                   border-color: #047857 !important;
+                  color: #fff !important;
                 }
-
+                .btn-outline-primary {
+                  color: var(--bs-primary) !important;
+                  border-color: var(--bs-primary) !important;
+                  background: transparent !important;
+                }
+                .btn-outline-primary:hover {
+                  background-color: var(--bs-primary) !important;
+                  color: #fff !important;
+                  border-color: var(--bs-primary) !important;
+                }
+                /* LOGO KLIEN GRID RESPONSIVE */
+                .clients-grid {
+                  display: grid;
+                  grid-template-columns: repeat(5, 1fr);
+                  gap: 2rem 2rem;
+                  justify-items: center;
+                  align-items: center;
+                  padding-bottom: 1rem;
+                }
+                .client-item {
+                  width: 100%;
+                  text-align: center;
+                }
+                @media (max-width: 767.98px) {
+                  .clients-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1.5rem 1rem;
+                  }
+                }
+                .client-logo {
+                  max-width: 120px;
+                  height: auto;
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  transition: all 0.3s ease-in-out;
+                }
+                .client-logo:hover {
+                  transform: scale(1.1);
+                }
+                /* Hapus semua kemungkinan warna biru */
                 .text-primary, .text-brand-primary, .text-blue, .text-info {
                   color: var(--bs-primary) !important;
                 }
@@ -218,20 +252,6 @@ const MyApp = ({ Component, pageProps }) => {
                   background-color: var(--bs-primary) !important;
                 }
                 .border-primary, .border-blue, .border-info {
-                  border-color: var(--bs-primary) !important;
-                }
-                .text-brand-secondary {
-                  color: var(--bs-secondary) !important;
-                }
-                .bg-brand-secondary {
-                  background-color: var(--bs-secondary) !important;
-                }
-                .border-brand-secondary {
-                  border-color: var(--bs-secondary) !important;
-                }
-
-                .form-check-input:checked {
-                  background-color: var(--bs-primary) !important;
                   border-color: var(--bs-primary) !important;
                 }
             `}</style>

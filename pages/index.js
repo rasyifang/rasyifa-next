@@ -1,7 +1,9 @@
 // pages/index.js
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { AppConfig } from '../lib/data'; // Import data dari file terpisah
+import Slider from 'react-slick';
 
 // ============================================================================
 // KOMPONEN-KOMPONEN KECIL (UTILITY)
@@ -269,19 +271,19 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
     const [activeImage, setActiveImage] = useState(null);
     const sliderRef = useRef(null);
 
-    useEffect(() => {
-        let slider;
-        if (assetsLoaded && sliderRef.current) {
-            slider = window.$(sliderRef.current);
-            if (!slider.hasClass('slick-initialized')) {
-                slider.slick({
-                    dots: true, infinite: true, speed: 300, slidesToShow: 3, slidesToScroll: 1, autoplay: true, autoplaySpeed: 3000,
-                    responsive: [ { breakpoint: 992, settings: { slidesToShow: 2 } }, { breakpoint: 768, settings: { slidesToShow: 1 } } ]
-                });
-            }
-        }
-        return () => { if (slider && slider.hasClass('slick-initialized')) slider.slick('unslick'); }
-    }, [assetsLoaded]);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        responsive: [
+            { breakpoint: 992, settings: { slidesToShow: 2 } },
+            { breakpoint: 768, settings: { slidesToShow: 1 } }
+        ]
+    };
     
     return (
         <>
@@ -306,7 +308,7 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
                     <div className="container py-lg-5">
                         <div className="row align-items-center g-5">
                             <div className="col-lg-6" data-aos="fade-right">
-                                <img src={AppConfig.images.about} alt="Tim Rasyifa Group berdiskusi" className="img-fluid rounded-3 shadow-lg" loading="lazy"/>
+                                <Image src={AppConfig.images.about} alt="Tim Rasyifa Group berdiskusi" className="img-fluid rounded-3 shadow-lg" width={600} height={400} loading="lazy"/>
                             </div>
                             <div className="col-lg-6" data-aos="fade-left">
                                 <SectionKicker>{AppConfig.content.about.kicker}</SectionKicker>
@@ -354,7 +356,7 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
                         <div className="clients-grid">
                             {AppConfig.images.clients.map((c, i) =>(
                                 <div className="client-item text-center" key={i}>
-                                    <img src={c.logo} className="client-logo mx-auto" alt={c.name} loading="lazy"/>
+                                    <Image src={c.logo} className="client-logo mx-auto" alt={c.name} width={150} height={75} loading="lazy"/>
                                     <p className="client-name mt-3 fw-semibold small">{c.name}</p>
                                 </div>
                             ))}
@@ -389,13 +391,15 @@ export default function HomePage({ theme, handleThemeToggle, assetsLoaded }) {
                                     ))}
                                 </div>
                                 <div ref={sliderRef} className="gallery-slider">
-                                    {AppConfig.images.sliderGallery.map((src, i) => (
-                                        <div key={i} className="px-2">
-                                            <a href="#" onClick={e => {e.preventDefault(); setActiveImage(src);}} className="d-block rounded overflow-hidden shadow-sm" aria-label={`Galeri slide ${i+1}`}>
-                                                <img src={src} className="w-100" style={{aspectRatio: '4/3', objectFit: 'cover'}} alt={`Galeri slide ${i+1}`} loading="lazy"/>
-                                            </a>
-                                        </div>
-                                    ))}
+                                    <Slider {...settings}>
+                                        {AppConfig.images.sliderGallery.map((src, i) => (
+                                            <div key={i} className="px-2">
+                                                <a href="#" onClick={e => {e.preventDefault(); setActiveImage(src);}} className="d-block rounded overflow-hidden shadow-sm" aria-label={`Galeri slide ${i+1}`}>
+                                                    <img src={src} className="w-100" style={{aspectRatio: '4/3', objectFit: 'cover'}} alt={`Galeri slide ${i+1}`} loading="lazy"/>
+                                                </a>
+                                            </div>
+                                        ))}
+                                    </Slider>
                                 </div>
                             </div>
                             <div className="tab-pane fade" id="new-gallery-pane">
